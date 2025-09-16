@@ -15,9 +15,9 @@ export default function TaskList({ tasks, setTasks }) {
         <ul>
             {tasks.map((task) => (
                 <li key={task.id}>
-          <span style={{ textDecoration: task.completed ? "line-through" : "" }}>
-            {task.title} - {task.description}
-          </span>
+                    <span style={{ textDecoration: task.completed ? "line-through" : "" }}>
+                        {task.title} - {task.description} | Priority: {task.priority} | Category: {task.category} | Due: {task.dueDate}
+                    </span>
                     <button onClick={() => handleComplete(task.id)}>Complete</button>
                     <button onClick={() => handleDelete(task.id)}>Delete</button>
                 </li>

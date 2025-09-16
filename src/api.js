@@ -1,24 +1,22 @@
-const API_URL = "http://localhost:8080/api/tasks";
+import axios from "axios";
 
-export async function fetchTasks() {
-    const res = await fetch(API_URL);
-    return res.json();
-}
+const BASE_URL = "http://localhost:8080/api/tasks";
 
-export async function createTask(task) {
-    const res = await fetch(API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(task),
-    });
-    return res.json();
-}
+export const fetchTasks = async () => {
+    const res = await axios.get(BASE_URL);
+    return res.data;
+};
 
-export async function completeTask(id) {
-    const res = await fetch(`${API_URL}/${id}/complete`, { method: "PUT" });
-    return res.json();
-}
+export const createTask = async (task) => {
+    const res = await axios.post(BASE_URL, task);
+    return res.data;
+};
 
-export async function deleteTask(id) {
-    await fetch(`${API_URL}/${id}`, { method: "DELETE" });
-}
+export const completeTask = async (id) => {
+    const res = await axios.put(`${BASE_URL}/${id}/complete`);
+    return res.data;
+};
+
+export const deleteTask = async (id) => {
+    await axios.delete(`${BASE_URL}/${id}`);
+};
